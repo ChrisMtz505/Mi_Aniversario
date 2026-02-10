@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Aniversario 💖</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .pantalla {
+      display: none;
+      padding: 40px;
+      animation: fadeIn 1s ease forwards;
+    }
+    .active {
+      display: block;
+    }
+    h1 {
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    button {
+      background: #ff4081;
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      margin: 10px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    button:hover {
+      background: #e91e63;
+      transform: scale(1.08);
+    }
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .galeria img {
+      width: 250px;
+      margin: 10px;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      transition: transform 0.5s;
+      border: 5px solid #fff; /* Contorno blanco elegante */
+      outline: 3px solid #ff4081; /* Segundo contorno rosa */
+      cursor: pointer;
+    }
+    .galeria img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255,64,129,0.8); /* Brillo al pasar el dedo */
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    /* Estilos del popup */
+    #popup {
+      display:none;
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.6);
+      justify-content:center;
+      align-items:center;
+      z-index:1000;
+    }
+    #popup .contenido {
+      background:#fff;
+      padding:20px;
+      border-radius:15px;
+      max-width:300px;
+      text-align:center;
+      box-shadow:0 4px 12px rgba(0,0,0,0.3);
+      animation:fadeIn 0.5s;
+    }
+    #popup p {
+      font-size:18px;
+      color:#ff4081;
+      margin-bottom:20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Pregunta 1 -->
+  <div id="q1" class="pantalla active">
+    <h1>💡 Pregunta 1</h1>
+    <p>¿Dónde fue nuestra primera cita?</p>
+    <button onclick="nextQuestion('q1','correcto')">En la línea verde</button>
+    <button onclick="nextQuestion('q1','incorrecto')">En el cine</button>
+    <button onclick="nextQuestion('q1','incorrecto')">En el parque</button>
+  </div>
+
+  <!-- Pregunta 2 -->
+  <div id="q2" class="pantalla">
+    <h1>💡 Pregunta 2</h1>
+    <p>¿Qué tomamos la primera vez que salimos?</p>
+    <button onclick="nextQuestion('q2','correcto')">Alcohol</button>
+    <button onclick="nextQuestion('q2','incorrecto')">Café</button>
+    <button onclick="nextQuestion('q2','incorrecto')">Refresco</button>
+  </div>
+
+  <!-- Pregunta 3 -->
+  <div id="q3" class="pantalla">
+    <h1>💡 Pregunta 3</h1>
+    <p>¿Quién es mi persona favorita?</p>
+    <button onclick="nextQuestion('q3','incorrecto')">Mi mejor amiga</button>
+    <button onclick="nextQuestion('q3','incorrecto')">Mi compañera de aventuras</button>
+    <button onclick="nextQuestion('q3','incorrecto')">Mi amor</button>
+    <button onclick="nextQuestion('q3','correcto')">Tú (que eres todo eso)</button>
+  </div>
+
+  <!-- Mensaje final -->
+  <div id="mensaje" class="pantalla">
+    <h1>✨ ¡Feliz Aniversario, mi vida! ✨</h1>
+    <p>Hoy celebro no solo nuestro aniversario, sino cada instante contigo.  
+       Eres mi alegría, mi paz y mi razón de sonreír cada día.  
+       Gracias por ser mi todo 💖</p>
+    <div class="galeria">
+      <img src="Ella.jpeg" alt="Recuerdo 1" onclick="mostrarMensaje('Toda hermosa desde niña 💕')">
+      <img src="O este.jpeg" alt="Recuerdo 2" onclick="mostrarMensaje('Nosotros todos bonitos :3✨')">
+      <img src="Yo.jpeg" alt="Recuerdo 3" onclick="mostrarMensaje('Yo todo menso, dando cringe jsjs❤️')">
+    </div>
+  </div>
+
+  <!-- Popup personalizado -->
+  <div id="popup">
+    <div class="contenido">
+      <p id="popup-text"></p>
+      <button onclick="cerrarPopup()">Cerrar 💖</button>
+    </div>
+  </div>
+
+  <script>
+    function nextQuestion(current, answer) {
+      if(answer === 'correcto') {
+        document.getElementById(current).classList.remove('active');
+        if(current === 'q1') document.getElementById('q2').classList.add('active');
+        else if(current === 'q2') document.getElementById('q3').classList.add('active');
+        else if(current === 'q3') document.getElementById('mensaje').classList.add('active');
+      } else {
+        mostrarMensaje("No me amas :( ");
+      }
+    }
+
+    function mostrarMensaje(texto) {
+      document.getElementById("popup-text").innerText = texto;
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function cerrarPopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

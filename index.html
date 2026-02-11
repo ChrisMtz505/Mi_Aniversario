@@ -160,10 +160,10 @@
   <div id="q3" class="pantalla">
     <h1>💡 Pregunta 3</h1>
     <p>¿Quién es mi persona favorita?</p>
-    <button onclick="nextQuestion('q3','incorrecto')">Mi mejor amiga</button>
-    <button onclick="nextQuestion('q3','incorrecto')">Mi compañera de aventuras</button>
-    <button onclick="nextQuestion('q3','incorrecto')">Mi amor</button>
-    <button onclick="nextQuestion('q3','correcto')">Tú (que eres todo eso)</button>
+    <button onclick="nextQuestion('q6','incorrecto')">Mi mejor amiga</button>
+    <button onclick="nextQuestion('q6','incorrecto')">Mi compañera de aventuras</button>
+    <button onclick="nextQuestion('q6','incorrecto')">Mi amor</button>
+    <button onclick="nextQuestion('q6','correcto')">Tú (que eres todo eso)</button>
   </div>
 
   <!-- Mensaje final -->
@@ -193,7 +193,10 @@
         document.getElementById(current).classList.remove('active');
         if(current === 'q1') document.getElementById('q2').classList.add('active');
         else if(current === 'q2') document.getElementById('q3').classList.add('active');
-        else if(current === 'q3') document.getElementById('mensaje').classList.add('active');
+        else if(current === 'q3') document.getElementById('q4').classList.add('active');
+        else if(current === 'q4') document.getElementById('q5').classList.add('active');
+        else if(current === 'q5') document.getElementById('q6').classList.add('active');
+        else if(current === 'q6') document.getElementById('mensaje').classList.add('active');
       } else {
         mostrarMensaje("No me amas :( ");
       }
@@ -211,4 +214,5 @@
 
 </body>
 </html>
+
 
